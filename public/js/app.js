@@ -50153,6 +50153,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -50184,9 +50185,13 @@ var staticRenderFns = [
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example profile.\n                "
-              )
+              _c("h5", [_vm._v("I'm an example profile.")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse nobis blanditiis voluptate ex optio explicabo, vel animi, eum doloremque magni omnis quibusdam maxime exercitationem iure alias eos. Consequuntur iste, maiores."
+                )
+              ])
             ])
           ])
         ])

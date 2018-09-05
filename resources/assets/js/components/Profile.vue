@@ -6,7 +6,8 @@
                     <div class="card-header">Profile Component</div>
 
                     <div class="card-body">
-                        I'm an example profile.
+                        <h5>I'm an example profile.</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse nobis blanditiis voluptate ex optio explicabo, vel animi, eum doloremque magni omnis quibusdam maxime exercitationem iure alias eos. Consequuntur iste, maiores.</p>
                     </div>
                 </div>
             </div>
