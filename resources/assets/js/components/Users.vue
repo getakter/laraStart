@@ -154,6 +154,7 @@
         
         created() {
                this.loadUsers();
+               setInterval(() => this.loadUsers(), 10000);
             }
     }
 </script>
