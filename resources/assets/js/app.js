@@ -17,6 +17,19 @@ import moment from 'moment'
 
 import VueProgressBar from 'vue-progressbar'
 
+import swal from 'sweetalert2'
+window.swal = swal;
+
+/*Sweet Alert */
+const toast = swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+window.toast = toast;
+
 
 /*Progressbar*/
 Vue.use(VueProgressBar, {
