@@ -19,15 +19,15 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Type</th>
-                        <th>Registered at</th>
+                        <th>Registedred at</th>
                         <th>Modify</th>
                   </tr>
-                  <tr>
-                    <td>20</td>
-                    <td>David Rozario</td>
-                    <td>david@gmail.com</td>
-                    <td>Admin</td>
-                    <td>12 June 2018</td>
+                  <tr v-for="user in users" :key="user.id">
+                    <td>{{user.id}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.type}}</td>
+                    <td>{{user.created_at}}</td>
                     <td>
                         <a href="#" @click="editModal(user)">
                             <i class="fa fa-edit blue"></i>
@@ -117,6 +117,7 @@
     export default {
         data() {
             return {
+                users : {},
                 form: new Form({
                     name : '',
                     email: '',
@@ -132,15 +133,21 @@
                 this.form.reset();
                 $('#addNew').modal('show');
             },
-           
+
+            loadUsers(){
+                axios.get("api/user").then(({ data }) => (this.users = data.data));
+            },
+
             createUser(){
                 this.form.post('api/user')
                
             },
 
-            mounted() {
-                console.log('Computer mounted.')
-            }
+           
         },
+        
+        created() {
+               this.loadUsers();
+            }
     }
 </script>

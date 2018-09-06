@@ -51225,6 +51225,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            users: {},
             form: new Form({
                 name: '',
                 email: '',
@@ -51241,12 +51242,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.form.reset();
             $('#addNew').modal('show');
         },
+        loadUsers: function loadUsers() {
+            var _this = this;
+
+            axios.get("api/user").then(function (_ref) {
+                var data = _ref.data;
+                return _this.users = data.data;
+            });
+        },
         createUser: function createUser() {
             this.form.post('api/user');
-        },
-        mounted: function mounted() {
-            console.log('Computer mounted.');
         }
+    },
+
+    created: function created() {
+        this.loadUsers();
     }
 });
 
@@ -51279,49 +51289,55 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "card-body table-responsive p-0" }, [
             _c("table", { staticClass: "table table-hover" }, [
-              _c("tbody", [
-                _vm._m(0),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("td", [_vm._v("20")]),
+              _c(
+                "tbody",
+                [
+                  _vm._m(0),
                   _vm._v(" "),
-                  _c("td", [_vm._v("David Rozario")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("david@gmail.com")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("Admin")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("12 June 2018")]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "a",
-                      {
-                        attrs: { href: "#" },
-                        on: {
-                          click: function($event) {
-                            _vm.editModal(_vm.user)
-                          }
-                        }
-                      },
-                      [_c("i", { staticClass: "fa fa-edit blue" })]
-                    ),
-                    _vm._v("\n                    /\n                    "),
-                    _c(
-                      "a",
-                      {
-                        attrs: { href: "#" },
-                        on: {
-                          click: function($event) {
-                            _vm.deleteUser(_vm.user.id)
-                          }
-                        }
-                      },
-                      [_c("i", { staticClass: "fa fa-trash red" })]
-                    )
-                  ])
-                ])
-              ])
+                  _vm._l(_vm.users, function(user) {
+                    return _c("tr", { key: user.id }, [
+                      _c("td", [_vm._v(_vm._s(user.id))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(user.name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(user.email))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(user.type))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(user.created_at))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                _vm.editModal(user)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fa fa-edit blue" })]
+                        ),
+                        _vm._v("\n                    /\n                    "),
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                _vm.deleteUser(user.id)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fa fa-trash red" })]
+                        )
+                      ])
+                    ])
+                  })
+                ],
+                2
+              )
             ])
           ])
         ])
@@ -51612,7 +51628,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Type")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Registered at")]),
+      _c("th", [_vm._v("Registedred at")]),
       _vm._v(" "),
       _c("th", [_vm._v("Modify")])
     ])

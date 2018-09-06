@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return User::latest()->paginate(10);
     }
 
     /**
@@ -41,7 +41,6 @@ class UserController extends Controller
             'photo' => $request['photo'],
             'password' => Hash::make($request['password'])
         ]);
-
     }
 
     /**
