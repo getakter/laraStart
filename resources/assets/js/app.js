@@ -9,18 +9,32 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-import { Form, HasError, AlertError } from 'vform';
+import { Form, HasError, AlertError } from 'vform'
 
 import VueRouter from 'vue-router'
 
 import moment from 'moment'
 
+import VueProgressBar from 'vue-progressbar'
+
+
+/*Progressbar*/
+Vue.use(VueProgressBar, {
+  color: 'rgb(143, 255, 199)',
+  failedColor: 'red',
+  height: '2px'
+})
+
+
+/*Form*/
 window.Form = Form;
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 
 Vue.use(VueRouter)
 
+
+/*Filters*/
 Vue.filter('titlecase', function(text) {
 	return text.charAt(0).toUpperCase() + text.slice(1)
 });
@@ -29,6 +43,8 @@ Vue.filter('myDate',function(created){
     return moment(created).format('MMMM Do YYYY');
 });
 
+
+/*Routes*/
 let routes = [
   { path: '/dashboard', component: require('./components/Dashboard.vue') },
   { path: '/users', component: require('./components/Users.vue') },
@@ -38,7 +54,6 @@ let routes = [
 const router = new VueRouter({
   routes // short for `routes: routes`
 })
-
 
 
 /**
