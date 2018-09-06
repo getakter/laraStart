@@ -13,11 +13,21 @@ import { Form, HasError, AlertError } from 'vform';
 
 import VueRouter from 'vue-router'
 
+import moment from 'moment'
+
 window.Form = Form;
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 
 Vue.use(VueRouter)
+
+Vue.filter('titlecase', function(text) {
+	return text.charAt(0).toUpperCase() + text.slice(1)
+});
+
+Vue.filter('myDate',function(created){
+    return moment(created).format('MMMM Do YYYY');
+});
 
 let routes = [
   { path: '/dashboard', component: require('./components/Dashboard.vue') },
